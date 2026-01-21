@@ -19,7 +19,7 @@ interface AuthContextType {
   isAuthenticated: boolean;
 }
 
-export const AuthContext = createContext<AuthContextType | undefined>(undefined);
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 // Mock users for demo purposes
 const mockUsers: Record<string, User & { password: string }> = {
@@ -53,19 +53,7 @@ const mockUsers: Record<string, User & { password: string }> = {
 };
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  // TEMPORARY: Auto-login as HR for demo
-  const DEMO_MODE = true; // Set to false after importing to Figma
-  
-  const defaultUser = DEMO_MODE ? {
-    id: '1',
-    email: 'hr@company.qa',
-    name: 'Sarah Al-Thani',
-    role: 'hr' as UserRole,
-    employeeNumber: 'EMP001',
-    department: 'Human Resources',
-  } : null;
-
-  const [user, setUser] = useState<User | null>(defaultUser);
+  const [user, setUser] = useState<User | null>(null);
 
   const login = async (email: string, password: string): Promise<boolean> => {
     // Simulate API call delay
@@ -81,7 +69,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const logout = () => {
-    setUser(DEMO_MODE ? defaultUser : null);
+    setUser(null);
   };
 
   return (
