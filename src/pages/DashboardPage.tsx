@@ -4,18 +4,19 @@ import ManagerDashboard from './dashboards/ManagerDashboard';
 import EmployeeDashboard from './dashboards/EmployeeDashboard';
 
 export default function DashboardPage() {
-
-  return <HRDashboard />;
-  // const { user } = useAuth();
-
+  
+  const { user } = useAuth();
+  const demoRole = 'hr';
   // switch (user?.role) {
-  //   case 'hr':
-  //     return <HRDashboard />;
-  //   case 'manager':
-  //     return <ManagerDashboard />;
-  //   case 'employee':
-  //     return <EmployeeDashboard />;
-  //   default:
-  //     return <EmployeeDashboard />;
-  // }
+
+  switch (demoRole) {
+    case 'hr':
+      return <HRDashboard />;
+    // case 'manager':
+    //   return <ManagerDashboard />;
+    // case 'employee':
+    //   return <EmployeeDashboard />;
+    default:
+      return <EmployeeDashboard />;
+  }
 }
