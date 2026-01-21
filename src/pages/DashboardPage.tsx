@@ -4,18 +4,15 @@ import ManagerDashboard from './dashboards/ManagerDashboard';
 import EmployeeDashboard from './dashboards/EmployeeDashboard';
 
 export default function DashboardPage() {
-  
   const { user } = useAuth();
-  const demoRole = 'hr';
-  // switch (user?.role) {
 
-  switch (demoRole) {
+  switch (user?.role) {
     case 'hr':
       return <HRDashboard />;
-    // case 'manager':
-    //   return <ManagerDashboard />;
-    // case 'employee':
-    //   return <EmployeeDashboard />;
+    case 'manager':
+      return <ManagerDashboard />;
+    case 'employee':
+      return <EmployeeDashboard />;
     default:
       return <EmployeeDashboard />;
   }
